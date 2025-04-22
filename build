@@ -1,0 +1,9 @@
+touch NEWS
+touch ChangeLog
+touch README
+touch AUTHORS
+touch COPYING
+libtoolize
+aclocal
+autoconf
+automake  --add-missing

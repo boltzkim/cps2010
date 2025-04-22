@@ -1,0 +1,11 @@
+#export DEVPATH=/Developer/Platforms/iPhoneOS.platform/Developer
+#export CC=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/i686-apple-darwin10-gcc-4.0.1
+export DEVPATH=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer
+export CC=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin10-llvm-gcc-4.2
+#export ARCH="-arch armv6"
+#export CFLAGS="-march=armv7 -mcpu=arm1176jzf-s -mcpu=cortex-a8"
+#export LDFLAGS="-march=armv7 -mcpu=arm1176jzf-s -mcpu=cortex-a8"
+export CFLAGS="-arch armv7 -isysroot=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ -march=armv7 -mcpu=arm1176jzf-s -I/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/ -L/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/lib/"
+export LDFLAGS="-arch armv7 -isysroot=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ -march=armv7 -mcpu=arm1176jzf-s -L/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/lib/"
+export CXX=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin10-llvm-g++-4.2
+export CXXFLAGS="-arch armv7 -isysroot=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ -march=armv7 -mcpu=arm1176jzf-s -I/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/ -L/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/lib/"

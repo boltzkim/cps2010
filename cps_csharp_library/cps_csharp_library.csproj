@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3417F590-EBF9-41A9-8F7C-96B5BC59E144}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>cps_csharp_library</RootNamespace>
+    <AssemblyName>cps_csharp_library</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BuiltinTopicKey_t.cs" />
+    <Compile Include="Condition.cs" />
+    <Compile Include="Condition2.cs" />
+    <Compile Include="ConditionSeq.cs" />
+    <Compile Include="ConditionSeq2.cs" />
+    <Compile Include="ContentFilteredTopic.cs" />
+    <Compile Include="ContentFilteredTopic2.cs" />
+    <Compile Include="cpscsharpmodule.cs" />
+    <Compile Include="cpscsharpmodulePINVOKE.cs" />
+    <Compile Include="DataReader.cs" />
+    <Compile Include="DataReader2.cs" />
+    <Compile Include="DataReaderListener.cs" />
+    <Compile Include="DataReaderListener2.cs" />
+    <Compile Include="DataReaderListenerCallBack.cs" />
+    <Compile Include="DataReaderQos.cs" />
+    <Compile Include="DataReaderSeq.cs" />
+    <Compile Include="DataWriter.cs" />
+    <Compile Include="DataWriter2.cs" />
+    <Compile Include="DataWriterListener.cs" />
+    <Compile Include="DataWriterListener2.cs" />
+    <Compile Include="DataWriterListenerCallBack.cs" />
+    <Compile Include="DataWriterListenerStatusChangedFlag.cs" />
+    <Compile Include="DataWriterQos.cs" />
+    <Compile Include="DataWriterStatus.cs" />
+    <Compile Include="DeadlineQosPolicy.cs" />
+    <Compile Include="DestinationOrderQosPolicy.cs" />
+    <Compile Include="DestinationOrderQosPolicyKind.cs" />
+    <Compile Include="DomainParticipant.cs" />
+    <Compile Include="DomainParticipant2.cs" />
+    <Compile Include="DomainParticipantFactory2.cs" />
+    <Compile Include="DomainParticipantFactoryQos.cs" />
+    <Compile Include="DomainParticipantListener.cs" />
+    <Compile Include="DomainParticipantListener2.cs" />
+    <Compile Include="DomainParticipantListenerCallBack.cs" />
+    <Compile Include="DomainParticipantQos.cs" />
+    <Compile Include="DomainParticipantQos2.cs" />
+    <Compile Include="DurabilityQosPolicy.cs" />
+    <Compile Include="DurabilityQosPolicyKind.cs" />
+    <Compile Include="DurabilityServiceQosPolicy.cs" />
+    <Compile Include="Duration_t.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Entity2.cs" />
+    <Compile Include="EntityFactoryQosPolicy.cs" />
+    <Compile Include="Foo.cs" />
+    <Compile Include="Foo2.cs" />
+    <Compile Include="FooDataReader.cs" />
+    <Compile Include="FooDataReader2.cs" />
+    <Compile Include="FooDataWriter.cs" />
+    <Compile Include="FooDataWriter2.cs" />
+    <Compile Include="FooRet.cs" />
+    <Compile Include="FooSeq.cs" />
+    <Compile Include="FooSeq2.cs" />
+    <Compile Include="FooTypeSupport.cs" />
+    <Compile Include="FooTypeSupport2.cs" />
+    <Compile Include="GroupDataQosPolicy.cs" />
+    <Compile Include="HistoryQosPolicy.cs" />
+    <Compile Include="HistoryQosPolicyKind.cs" />
+    <Compile Include="InconsistentTopicStatus.cs" />
+    <Compile Include="InstanceHandleSeq.cs" />
+    <Compile Include="LatencyBudgetQosPolicy.cs" />
+    <Compile Include="LifespanQosPolicy.cs" />
+    <Compile Include="LivelinessChangedStatus.cs" />
+    <Compile Include="LivelinessLostStatus.cs" />
+    <Compile Include="LivelinessQosPolicy.cs" />
+    <Compile Include="LivelinessQosPolicyKind.cs" />
+    <Compile Include="Message2.cs" />
+    <Compile Include="message_t.cs" />
+    <Compile Include="MultiTopic.cs" />
+    <Compile Include="MultiTopic2.cs" />
+    <Compile Include="OfferedDeadlineMissedStatus.cs" />
+    <Compile Include="OfferedIncompatibleQosStatus.cs" />
+    <Compile Include="OwnershipQosPolicy.cs" />
+    <Compile Include="OwnershipQosPolicyKind.cs" />
+    <Compile Include="OwnershipStrengthQosPolicy.cs" />
+    <Compile Include="ParticipantBuiltinTopicData.cs" />
+    <Compile Include="PartitionQosPolicy.cs" />
+    <Compile Include="PresentationQosPolicy.cs" />
+    <Compile Include="PresentationQosPolicyAccessScopeKind.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicationBuiltinTopicData.cs" />
+    <Compile Include="PublicationMatchedStatus.cs" />
+    <Compile Include="Publisher.cs" />
+    <Compile Include="Publisher2.cs" />
+    <Compile Include="PublisherListener.cs" />
+    <Compile Include="PublisherListener2.cs" />
+    <Compile Include="PublisherListenerCallBack.cs" />
+    <Compile Include="PublisherQos.cs" />
+    <Compile Include="QosPolicyCount.cs" />
+    <Compile Include="QueryCondition.cs" />
+    <Compile Include="QueryCondition2.cs" />
+    <Compile Include="ReadCondition.cs" />
+    <Compile Include="ReadCondition2.cs" />
+    <Compile Include="ReaderDataLifecycleQosPolicy.cs" />
+    <Compile Include="ReliabilityQosPolicy.cs" />
+    <Compile Include="ReliabilityQosPolicyKind.cs" />
+    <Compile Include="RequestedDeadlineMissedStatus.cs" />
+    <Compile Include="RequestedIncompatibleQosStatus.cs" />
+    <Compile Include="ResourceLimitsQosPolicy.cs" />
+    <Compile Include="SampleInfo.cs" />
+    <Compile Include="SampleInfo2.cs" />
+    <Compile Include="SampleInfoSeq.cs" />
+    <Compile Include="SampleInfoSeq2.cs" />
+    <Compile Include="SampleLostStatus.cs" />
+    <Compile Include="SampleRejectedStatus.cs" />
+    <Compile Include="SampleRejectedStatusKind.cs" />
+    <Compile Include="StatusCondition.cs" />
+    <Compile Include="StatusCondition2.cs" />
+    <Compile Include="StringSeq.cs" />
+    <Compile Include="StringSeq2.cs" />
+    <Compile Include="Subscriber.cs" />
+    <Compile Include="Subscriber2.cs" />
+    <Compile Include="SubscriberListener.cs" />
+    <Compile Include="SubscriberListener2.cs" />
+    <Compile Include="SubscriberListenerCallBack.cs" />
+    <Compile Include="SubscriberQos.cs" />
+    <Compile Include="SubscriptionBuiltinTopicData.cs" />
+    <Compile Include="SubscriptionMatchedStatus.cs" />
+    <Compile Include="SUPPORT_TYPE.cs" />
+    <Compile Include="SWIGTYPE_p_int.cs" />
+    <Compile Include="SWIGTYPE_p_long.cs" />
+    <Compile Include="SWIGTYPE_p_p_char.cs" />
+    <Compile Include="SWIGTYPE_p_p_Condition.cs" />
+    <Compile Include="SWIGTYPE_p_p_DataReader.cs" />
+    <Compile Include="SWIGTYPE_p_p_Foo.cs" />
+    <Compile Include="SWIGTYPE_p_p_long.cs" />
+    <Compile Include="SWIGTYPE_p_p_SampleInfo.cs" />
+    <Compile Include="TimeBasedFilterQosPolicy.cs" />
+    <Compile Include="Time_t.cs" />
+    <Compile Include="Topic.cs" />
+    <Compile Include="Topic2.cs" />
+    <Compile Include="TopicBuiltinTopicData.cs" />
+    <Compile Include="TopicDataQosPolicy.cs" />
+    <Compile Include="TopicDescription.cs" />
+    <Compile Include="TopicDescription2.cs" />
+    <Compile Include="TopicListener.cs" />
+    <Compile Include="TopicListener2.cs" />
+    <Compile Include="TopicListenerCallBack.cs" />
+    <Compile Include="TopicQos.cs" />
+    <Compile Include="TransportPriorityQosPolicy.cs" />
+    <Compile Include="UserDataQosPolicy.cs" />
+    <Compile Include="WaitSet.cs" />
+    <Compile Include="WaitSet2.cs" />
+    <Compile Include="WriterDataLifecycleQosPolicy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

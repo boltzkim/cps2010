@@ -1,0 +1,14 @@
+D:\01.dev\2017\01.lvc\cps2010\ProcessTest2\bin\Debug\ProcessTest2.exe.config
+D:\01.dev\2017\01.lvc\cps2010\ProcessTest2\bin\Debug\ProcessTest2.exe
+D:\01.dev\2017\01.lvc\cps2010\ProcessTest2\bin\Debug\ProcessTest2.pdb
+D:\01.dev\2017\01.lvc\cps2010\ProcessTest2\obj\Debug\ProcessTest2.csprojResolveAssemblyReference.cache
+D:\01.dev\2017\01.lvc\cps2010\ProcessTest2\obj\Debug\ProcessTest2.csproj.CoreCompileInputs.cache
+D:\01.dev\2017\01.lvc\cps2010\ProcessTest2\obj\Debug\ProcessTest2.exe
+D:\01.dev\2017\01.lvc\cps2010\ProcessTest2\obj\Debug\ProcessTest2.pdb
+E:\01.dev\2017\01.lvc\cps2010\ProcessTest2\bin\Debug\ProcessTest2.exe.config
+E:\01.dev\2017\01.lvc\cps2010\ProcessTest2\bin\Debug\ProcessTest2.exe
+E:\01.dev\2017\01.lvc\cps2010\ProcessTest2\bin\Debug\ProcessTest2.pdb
+E:\01.dev\2017\01.lvc\cps2010\ProcessTest2\obj\Debug\ProcessTest2.csprojAssemblyReference.cache
+E:\01.dev\2017\01.lvc\cps2010\ProcessTest2\obj\Debug\ProcessTest2.csproj.CoreCompileInputs.cache
+E:\01.dev\2017\01.lvc\cps2010\ProcessTest2\obj\Debug\ProcessTest2.exe
+E:\01.dev\2017\01.lvc\cps2010\ProcessTest2\obj\Debug\ProcessTest2.pdb

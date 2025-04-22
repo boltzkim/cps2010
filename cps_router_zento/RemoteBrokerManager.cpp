@@ -1,0 +1,677 @@
+#include "RemoteBrokerManager.h"
+
+
+
+#define REMOTE_Broker_PORT 8301
+
+
+
+
+
+
+
+
+RemoteBrokerManager::RemoteBrokerManager()
+{
+
+	prefix = getDefaultPrefix();
+	is_end = false;
+
+	char *psz_path;
+
+	module_object_t *p_module = (module_object_t *)current_object(0);
+
+	asprintf(&psz_path, "udp:@%s:%d", "239.255.0.1", REMOTE_Broker_PORT);
+	trace_msg((module_object_t*)p_module, TRACE_TRACE, "SEDP ACCESS : %s", psz_path);
+
+	p_access = access_new((module_object_t*)p_module, "udp4", psz_path);
+
+
+	int bind_port = p_access->pf_getBind(p_access);
+
+	printPrefix(this->prefix);
+	printf("\r\nRemoteBrokerManager BIND(%d)\n", bind_port);
+
+
+	thread_id = new std::thread(Network, this);
+
+	if (p_access)
+	{
+		char* p_path_temp;
+		asprintf(&p_path_temp, "%s:%d", "239.255.0.1", REMOTE_Broker_PORT);
+		p_accessout = access_out_new((module_object_t*)p_module, "udp", p_path_temp, p_access->fd);
+		FREE(p_path_temp);
+	}
+
+
+	FREE(psz_path);
+
+
+
+	char *p_Brokers = NULL;
+
+	p_module = (module_object_t *)current_object(0);
+
+	p_Brokers = var_create_get_string((module_object_t*)p_module, "Brokers");
+
+	if (p_Brokers)
+	{
+		while (p_Brokers) {
+			char *psz = strchr(p_Brokers, ',');
+			char *psz_realhost;
+			int i_realport;
+
+			
+
+			if (psz == NULL)
+			{
+				if (p_Brokers)
+				{
+					char *psz2;
+
+					psz2 = strchr(p_Brokers, ':');
+
+					if (psz2) {
+						*psz2++ = '\0';
+					}
+
+					psz_realhost = p_Brokers;
+					i_realport = (psz2 != NULL) ? atoi(psz2) : 8301;
+
+					RemoteBroker* p_remoteBroker = new RemoteBroker(psz_realhost, i_realport);
+					remoteBrokers.push_back(p_remoteBroker);
+					
+				}
+				break;
+			}
+
+
+			if (psz) {
+				*psz++ = '\0';
+			}
+
+			if (p_Brokers)
+			{
+				char *psz2;
+
+				psz2 = strchr(p_Brokers, ':');
+
+				if (psz2) {
+					*psz2++ = '\0';
+				}
+
+				psz_realhost = p_Brokers;
+				i_realport = (psz2 != NULL) ? atoi(psz2) : 8301;
+
+				RemoteBroker* p_remoteBroker = new RemoteBroker(psz_realhost, i_realport);
+				remoteBrokers.push_back(p_remoteBroker);
+
+				/*sBroker sBroker(psz_realhost, i_realport);
+
+				sBrokers.push_back(sBroker);*/
+			}
+
+			p_Brokers = psz;
+
+		}
+	}
+
+	thread_id2 = NULL;
+
+	//thread_id2 = new std::thread(Live, this);
+}
+
+
+RemoteBrokerManager::~RemoteBrokerManager()
+{
+	if (thread_id)
+	{
+		is_end = true;
+		p_access->b_end = true;
+		thread_id->join();
+		access_delete(p_access);
+	}
+
+	if (p_accessout)
+	{
+		access_out_delete(p_accessout);
+	}
+
+
+	if (thread_id2)
+	{
+		is_end = true;
+		thread_id2->join();
+	}
+}
+
+
+void RemoteBrokerManager::Live(RemoteBrokerManager *p_RemoteBrokerManager)
+{
+	while (p_RemoteBrokerManager->is_end == false)
+	{
+		Sleep(LIVESLEEPTIME);
+
+		for (std::list<sBroker>::iterator li = p_RemoteBrokerManager->sBrokers.begin(); li != p_RemoteBrokerManager->sBrokers.end(); li++)
+		{
+			sBroker a_sBroker = *li;
+			p_RemoteBrokerManager->sendLive(a_sBroker);
+		}
+	}
+}
+
+void RemoteBrokerManager::Network(RemoteBrokerManager *p_RemoteBrokerManager)
+{
+	while (p_RemoteBrokerManager->is_end == false)
+	{
+		p_RemoteBrokerManager->getData();
+	}
+}
+
+
+
+
+void RemoteBrokerManager::getData()
+{
+
+	struct sockaddr client;
+	int l = sizeof(struct sockaddr);
+	RemoteBroker *found_remoteBroker = NULL;
+
+	data_t*	data = p_access->pf_dataFrom(p_access, &client, &l);
+
+	if (data == NULL) return;
+	bool is_found = false;
+	bool is_ALIVE_OR_NACK = true;
+
+	GuidPrefix_t		remote_prefix;
+	struct sockaddr_in	remote_addr;
+
+	if (data->i_size != getMessageSize()
+		&& data->i_size != getNotifyMessageSize())
+	{
+		data_release(data);
+		return;
+	}
+
+	if (memcmp(data->p_data, "ALIVE:", 6) == 0)
+	{
+		remote_prefix = *((GuidPrefix_t *)&data->p_data[6]);
+		remote_addr = *((struct sockaddr_in *)&data->p_data[18]);
+#if PRINT_NETWORK
+		printf("(R) ALIVE \n");
+#endif
+	}else if (memcmp(data->p_data, "NACK_:", 6) == 0)
+	{
+		remote_prefix = *((GuidPrefix_t *)&data->p_data[6]);
+		remote_addr = *((struct sockaddr_in *)&data->p_data[18]);
+#if PRINT_NETWORK
+		printf("(R) NACK_ \n");
+#endif
+	}
+	else if (memcmp(data->p_data, "NOTIF:", 6) == 0) {
+		///
+
+		printf("(R:1) NOTIF\n");
+	}
+	else {
+//#if PRINT_NETWORK
+		printf("NOT (R) %s \n", data->p_data);
+//#endif
+		is_ALIVE_OR_NACK = false;
+		data_release(data);
+		return;
+	}
+
+
+	if (memcmp(&remote_prefix, &this->prefix, sizeof(GuidPrefix_t)) == 0)
+	{
+		//printf("Manager Prefix equal prefix...\n");
+		return;
+	}
+
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+
+		if (_remoteBroker->is_end)
+		{
+			remoteBrokers.remove(_remoteBroker);
+			delete _remoteBroker;
+
+			if (remoteBrokers.size() == 0) break;
+			li = remoteBrokers.begin();
+			continue;
+		}
+
+		if (memcmp(&remote_prefix, &_remoteBroker->remote_prefix, sizeof(GuidPrefix_t)) == 0)
+		{
+			is_found = true;
+			found_remoteBroker = _remoteBroker;
+#if PRINT_NETWORK
+			printf("found same prefix...\n");
+#endif
+			if (memcmp(&remote_addr, &_remoteBroker->remote_addr, sizeof(client)) == 0)
+			{
+				is_found = true;
+				found_remoteBroker = _remoteBroker;
+				printf("1 found same remote_addr...\n");
+			}
+
+			break;
+		}
+
+		if (memcmp(&remote_addr, &_remoteBroker->remote_addr, sizeof(client)) == 0)
+		{
+			is_found = true;
+			found_remoteBroker = _remoteBroker;
+			printf("2 found same remote_addr...\n");
+			break;
+		}
+	}
+
+	 
+	if (is_found == false && is_ALIVE_OR_NACK)
+	{
+
+		printf("\r\n(%d)Add RemoteBroker\n", remoteBrokers.size());
+		printPrefix(remote_prefix);
+		printf("\n");
+		found_remoteBroker = new RemoteBroker(remote_prefix, remote_addr);
+
+		
+		
+		remoteBrokers.push_back(found_remoteBroker);
+		sendNACK(client, found_remoteBroker);
+
+		//// Notify to Other Remote Broker about new Broker..
+		//notifyNewRemoteBrokerToOtherRemoteBroker(remote_prefix, remote_addr, client);
+		//// Notify remote Brokers's information to New Broker.. 
+		//notifyOtherRemoteBrokerToNewRemoteBroker(remote_prefix, remote_addr, client);
+
+
+	}
+	else if (is_found == true && is_ALIVE_OR_NACK) {
+
+	}
+
+	data_release(data);
+}
+
+
+void RemoteBrokerManager::sendLive(sBroker a_sBroker)
+{
+
+	/*char *livemessage = "ALIVE:";
+	int i_alive = strlen(livemessage);
+	int i_prefix = sizeof(GuidPrefix_t);
+
+	int i_size = i_alive;
+	i_size += i_prefix;
+	i_size += sizeof(struct sockaddr_in);
+
+	data_t *p_senddata = data_new(i_size);
+
+	memcpy(p_senddata->p_data, livemessage, i_alive);
+	memcpy(p_senddata->p_data + i_alive, &prefix, sizeof(prefix));
+	memcpy(p_senddata->p_data + i_alive + i_prefix, &bind_addr, sizeof(bind_addr));
+
+
+	if (mapped_port == 0)
+	{
+		p_senddata->i_port = port;
+		p_senddata->p_address = (uint8_t *)strdup(ip.c_str());
+	}
+	else
+	{
+		p_senddata->i_port = mapped_port;
+		p_senddata->p_address = (uint8_t *)strdup(mapped_ip.c_str());
+	}
+
+	printf("(S) ALIVE %s:%d\n", p_senddata->p_address, p_senddata->i_port);
+	p_accessout->pf_write(p_accessout, p_senddata);*/
+}
+
+void RemoteBrokerManager::sendNACK(struct sockaddr client, RemoteBroker *p_RemoteBroker)
+{
+	char *livemessage = "NACK_:";
+	int i_alive = strlen(livemessage);
+	int i_prefix = sizeof(GuidPrefix_t);
+
+	int i_size = i_alive;
+	i_size += i_prefix;
+	i_size += sizeof(struct sockaddr_in);
+
+	data_t *p_senddata = data_new(i_size);
+
+	memcpy(p_senddata->p_data, livemessage, i_alive);
+memcpy(p_senddata->p_data + i_alive, &p_RemoteBroker->prefix, sizeof(p_RemoteBroker->prefix));
+memcpy(p_senddata->p_data + i_alive + i_prefix, &p_RemoteBroker->bind_addr, sizeof(p_RemoteBroker->bind_addr));
+
+
+p_senddata->i_port = ntohs(((struct sockaddr_in*)&client)->sin_port);
+p_senddata->p_address = (uint8_t *)strdup(inet_ntoa(((struct sockaddr_in*)&client)->sin_addr));
+
+#if PRINT_NETWORK
+char *mapped_ip = inet_ntoa(p_RemoteBroker->bind_addr.sin_addr);
+int mapped_port = ntohs(p_RemoteBroker->bind_addr.sin_port);
+
+printf("(S) NACK_ %s:%d , %s:%d\n", p_senddata->p_address, p_senddata->i_port, mapped_ip, mapped_port);
+#endif
+p_accessout->pf_write(p_accessout, p_senddata);
+
+
+}
+
+
+void RemoteBrokerManager::sendPDP(uint8_t *p_data, int i_size)
+{
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+
+		if(_remoteBroker->mapped_port == 0) continue;
+
+		data_t *p_senddata = data_new(i_size);
+
+		memcpy(p_senddata->p_data, p_data, i_size);
+
+		if (_remoteBroker->mapped_port == 0)
+		{
+			p_senddata->i_port = _remoteBroker->port;
+			p_senddata->p_address = (uint8_t *)strdup(_remoteBroker->ip.c_str());
+		}
+		else
+		{
+			p_senddata->i_port = _remoteBroker->mapped_port;
+			p_senddata->p_address = (uint8_t *)strdup(_remoteBroker->mapped_ip.c_str());
+		}
+
+
+		_remoteBroker->send(p_senddata);
+
+	}
+
+}
+
+
+bool RemoteBrokerManager::hasBindAddr(struct sockaddr client)
+{
+
+	int remote_port = ntohs(((struct sockaddr_in*)&client)->sin_port);
+    char *remote_address = (char *)inet_ntoa(((struct sockaddr_in*)&client)->sin_addr);
+
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+
+		if (strcmp(remote_address, _remoteBroker->bind_ip.c_str()) == 0 && 
+			remote_port ==  _remoteBroker->bind_port)
+		{
+			return true;
+		}
+
+	}
+
+	return false;
+}
+
+bool RemoteBrokerManager::hasClientAddr(struct sockaddr client)
+{
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+
+		if (memcmp(&client, &_remoteBroker->bind_addr, sizeof(client)) == 0)
+		{
+			return true;
+		}
+
+	}
+
+	return false;
+}
+
+
+static GuidPrefix notPrefix;
+static bool is_init = false;
+
+
+
+void RemoteBrokerManager::notifyNewRemoteBrokerToOtherRemoteBroker(GuidPrefix_t new_remote_prefix, struct sockaddr_in new_remote_addr, struct sockaddr new_mapped_remote_addr)
+{
+	if (is_init == false)
+	{
+		memset(&notPrefix, NULL, sizeof(GuidPrefix));
+		is_init = true;
+	}
+	printf("(S) NOTIF in notifyNewRemoteBrokerToOtherRemoteBroker \r\n");
+	char *notifymessage = "NOTIF:";
+
+	int i_alive = strlen(notifymessage);
+	int i_prefix = sizeof(GuidPrefix_t);
+	int i_sockaddr_in = sizeof(struct sockaddr_in);
+
+	int i_size = i_alive;
+	i_size += i_prefix;
+	i_size += i_sockaddr_in;   // bind - address
+	i_size += i_sockaddr_in;	// mapp = remote - address
+
+
+	int i = 0;
+
+
+
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+
+
+		if (memcmp(&notPrefix, &_remoteBroker->remote_prefix, sizeof(GuidPrefix_t)) == 0)
+		{
+			continue;
+		}
+
+		if (memcmp(&new_remote_prefix, &_remoteBroker->remote_prefix, sizeof(GuidPrefix_t)) != 0)
+		{
+			data_t *p_senddata = data_new(i_size);
+
+			memcpy(p_senddata->p_data, notifymessage, i_alive);
+			memcpy(p_senddata->p_data + i_alive, &new_remote_prefix, sizeof(new_remote_prefix));
+			memcpy(p_senddata->p_data + i_alive + i_prefix, &new_remote_addr, sizeof(new_remote_addr));
+			memcpy(p_senddata->p_data + i_alive + i_prefix+ i_sockaddr_in, &new_mapped_remote_addr, sizeof(new_mapped_remote_addr));
+
+
+
+			p_senddata->i_port = ntohs(((struct sockaddr_in*)&_remoteBroker->remote_addr)->sin_port);
+			p_senddata->p_address = (uint8_t *)strdup(inet_ntoa(((struct sockaddr_in*)&_remoteBroker->remote_addr)->sin_addr));
+
+
+			printf("(%d) ", i);
+			printPrefix(new_remote_prefix);
+			
+			printf(" to ");
+			printPrefix(_remoteBroker->remote_prefix);
+
+			printf("\r\n");
+			
+			i++;
+			p_accessout->pf_write(p_accessout, p_senddata);
+		}
+	}
+}
+
+void RemoteBrokerManager::notifyOtherRemoteBrokerToNewRemoteBroker(GuidPrefix_t	new_remote_prefix, struct sockaddr_in new_remote_addr, struct sockaddr new_mapped_remote_addr)
+{
+	char *notifymessage = "NOTIF:";
+
+	int i_alive = strlen(notifymessage);
+	int i_prefix = sizeof(GuidPrefix_t);
+	int i_sockaddr_in = sizeof(struct sockaddr_in);
+
+	int i_size = i_alive;
+	i_size += i_prefix;
+	i_size += i_sockaddr_in;   // bind - address
+	i_size += i_sockaddr_in;	// mapp = remote - address
+
+
+	int i = 0;
+	printf("(S) NOTIF in notifyOtherRemoteBrokerToNewRemoteBroker \r\n");
+
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+
+		if (memcmp(&notPrefix, &_remoteBroker->remote_prefix, sizeof(GuidPrefix_t)) == 0)
+		{
+			continue;
+		}
+
+		if (memcmp(&new_remote_prefix, &_remoteBroker->remote_prefix, sizeof(GuidPrefix_t)) != 0)
+		{
+			data_t *p_senddata = data_new(i_size);
+
+			memcpy(p_senddata->p_data, notifymessage, i_alive);
+			memcpy(p_senddata->p_data + i_alive, &_remoteBroker->remote_prefix, sizeof(_remoteBroker->remote_prefix));
+			memcpy(p_senddata->p_data + i_alive + i_prefix, &_remoteBroker->remote_addr, sizeof(_remoteBroker->remote_addr));
+			memcpy(p_senddata->p_data + i_alive + i_prefix + i_sockaddr_in, &_remoteBroker->remote_addr, sizeof(_remoteBroker->remote_addr));
+
+			p_senddata->i_port = ntohs(((struct sockaddr_in*)&new_mapped_remote_addr)->sin_port);
+			p_senddata->p_address = (uint8_t *)strdup(inet_ntoa(((struct sockaddr_in*)&new_mapped_remote_addr)->sin_addr));
+
+
+			printf("(%d) ", i);
+			printPrefix(_remoteBroker->remote_prefix);
+			printf(" to ");
+			printPrefix(new_remote_prefix);
+			printf("\r\n");
+
+			i++;
+			
+			p_accessout->pf_write(p_accessout, p_senddata);
+
+		}
+
+	}
+}
+
+
+void RemoteBrokerManager::procedureNotify(uint8_t *p_data)
+{
+	GuidPrefix_t		remote_prefix = *((GuidPrefix_t *)&p_data[6]);
+	struct sockaddr_in	remote_addr = *((struct sockaddr_in *)&p_data[6 + sizeof(GuidPrefix_t)]);
+	struct sockaddr_in	mapped_addr = *((struct sockaddr_in *)&p_data[6 + sizeof(GuidPrefix_t) + sizeof(struct sockaddr_in)]);
+	
+	bool is_found = false;
+	RemoteBroker *found_remoteBroker = NULL;
+
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+
+		if (memcmp(&notPrefix, &_remoteBroker->remote_prefix, sizeof(GuidPrefix_t)) == 0)
+		{
+			continue;
+		}
+
+		if (memcmp(&remote_prefix, &_remoteBroker->remote_prefix, sizeof(GuidPrefix_t)) == 0)
+		{
+			is_found = true;
+			break;
+		}
+	}
+
+
+	if (is_found == false)
+	{
+
+		found_remoteBroker = new RemoteBroker(remote_prefix, mapped_addr);
+		found_remoteBroker->setLocalAddr(remote_addr);
+
+		printf("Add Notify RemoteBroker ");
+		printPrefix(remote_prefix);
+		printf("\r\n");
+
+		remoteBrokers.push_back(found_remoteBroker);
+	}
+
+}
+
+
+void RemoteBrokerManager::printRemoteBrokers()
+{
+	int i = 0;
+
+	printf("---------------------------------------------------------\r\n\r\n\r\n");
+
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+
+		
+		_remoteBroker->print();
+
+		i++;
+	}
+
+	printf("\r\n\r\n---------------------------------------------------------\r\n\r\n");
+
+}
+
+void RemoteBrokerManager::sendReNACK(struct sockaddr client, GuidPrefix_t remote_prefix)
+{
+
+	for (std::list<RemoteBroker*>::iterator li = remoteBrokers.begin(); li != remoteBrokers.end(); li++)
+	{
+		RemoteBroker *_remoteBroker = *li;
+		if (memcmp(&remote_prefix, &_remoteBroker->remote_prefix, sizeof(GuidPrefix_t)) == 0)
+		{
+			
+
+			char *livemessage = "NACK_:";
+			int i_alive = strlen(livemessage);
+			int i_prefix = sizeof(GuidPrefix_t);
+
+			int i_size = i_alive;
+			i_size += i_prefix;
+			i_size += sizeof(struct sockaddr_in);
+
+			data_t *p_senddata = data_new(i_size);
+
+			memcpy(p_senddata->p_data, livemessage, i_alive);
+			memcpy(p_senddata->p_data + i_alive, &_remoteBroker->prefix, sizeof(_remoteBroker->prefix));
+			memcpy(p_senddata->p_data + i_alive + i_prefix, &_remoteBroker->bind_addr, sizeof(_remoteBroker->bind_addr));
+
+
+			p_senddata->i_port = ntohs(((struct sockaddr_in*)&client)->sin_port);
+			p_senddata->p_address = (uint8_t *)strdup(inet_ntoa(((struct sockaddr_in*)&client)->sin_addr));
+
+#if PRINT_NETWORK
+			char *mapped_ip = inet_ntoa(p_RemoteBroker->bind_addr.sin_addr);
+			int mapped_port = ntohs(p_RemoteBroker->bind_addr.sin_port);
+
+			printf("(S) NACK_ %s:%d , %s:%d\n", p_senddata->p_address, p_senddata->i_port, mapped_ip, mapped_port);
+#endif
+
+			printf("send renack\r\n");
+			p_accessout->pf_write(p_accessout, p_senddata);
+
+
+
+
+			break;
+		}
+	}
+}
+
+void receiveNotify(uint8_t* p_data)
+{
+	
+	if (getBroker() && getBroker()->getRemoteBrokerManager())
+	{
+		getBroker()->getRemoteBrokerManager()->procedureNotify(p_data);
+
+	}
+}
+
+

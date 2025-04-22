@@ -1,0 +1,1 @@
+swig -c++  -I../../cps_cpp/src/includes -outdir . -o cpscsharp_wrapper.cpp  -csharp cps_csharp.i

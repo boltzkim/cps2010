@@ -1,0 +1,1 @@
+swig -c++  -I../../cps_cpp/src/includes -outdir . -o cpsjava_wrapper.cpp  -package kr.re.etri.cps.jni -java cps_java.i

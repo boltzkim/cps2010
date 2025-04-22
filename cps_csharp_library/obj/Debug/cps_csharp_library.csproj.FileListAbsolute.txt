@@ -1,0 +1,12 @@
+D:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\bin\Debug\cps_csharp_library.dll
+D:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\bin\Debug\cps_csharp_library.pdb
+D:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\obj\Debug\cps_csharp_library.csprojResolveAssemblyReference.cache
+D:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\obj\Debug\cps_csharp_library.csproj.CoreCompileInputs.cache
+D:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\obj\Debug\cps_csharp_library.dll
+D:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\obj\Debug\cps_csharp_library.pdb
+E:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\bin\Debug\cps_csharp_library.dll
+E:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\bin\Debug\cps_csharp_library.pdb
+E:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\obj\Debug\cps_csharp_library.csprojAssemblyReference.cache
+E:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\obj\Debug\cps_csharp_library.csproj.CoreCompileInputs.cache
+E:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\obj\Debug\cps_csharp_library.dll
+E:\01.dev\2017\01.lvc\cps2010\cps_csharp_library\obj\Debug\cps_csharp_library.pdb

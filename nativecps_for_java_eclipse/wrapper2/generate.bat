@@ -1,0 +1,1 @@
+swig -c++ -I../../cps2010/src/includes -I../../cps2010/src/modules/rtps -o cps_wrapper.cpp -package kr.re.etri.cps -java cps.i

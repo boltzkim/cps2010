@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\core">
+      <UniqueIdentifier>{4e05d04c-6122-4408-8a23-b8f7b34598e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\core\dcps">
+      <UniqueIdentifier>{e5f992f6-254f-4a0e-99de-d98d5a46383e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\core\dcps\interface">
+      <UniqueIdentifier>{bcf89518-b293-4ff9-822e-701dcf66eafa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\core\foo">
+      <UniqueIdentifier>{6ffffc36-76ea-47a4-bf82-9132f819690a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\core\object">
+      <UniqueIdentifier>{1e42e2c2-30d9-45b5-9560-f843336070c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\includes">
+      <UniqueIdentifier>{efe3db86-ce98-4660-b6fa-3cc28767f437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules">
+      <UniqueIdentifier>{878de910-30fc-48eb-b8f0-d56edd1b7e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\discovery">
+      <UniqueIdentifier>{e728fe2a-2efc-4328-8a48-3a2ce36b69f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\discovery\rtps">
+      <UniqueIdentifier>{0163b9c3-4519-44a5-9bf2-d1f2b27348ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\management">
+      <UniqueIdentifier>{ed45e3d1-831d-48a7-bc01-7180b27470ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\monitoring">
+      <UniqueIdentifier>{775ea240-29c7-4df2-9396-33fbdbd6fe97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\network">
+      <UniqueIdentifier>{d70318a4-3c8e-4076-afe5-47481bccee6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\qos">
+      <UniqueIdentifier>{efd03c7e-2c91-47db-96be-d787b1b31f34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\qos\sqlite">
+      <UniqueIdentifier>{8c418aff-51a7-4efd-9561-87afec05c009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\rtps">
+      <UniqueIdentifier>{9d00167e-f669-4d8b-a252-5272f59020f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\trace">
+      <UniqueIdentifier>{7782db8c-d1ce-46e9-89e7-58bc90961dc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\modules\typesupport">
+      <UniqueIdentifier>{0b6ff52d-cd5e-4585-87ce-38e4215dfe5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\samples">
+      <UniqueIdentifier>{2f091934-9679-41e5-8d77-4c8ca7f472a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\samples\test_dcps_api">
+      <UniqueIdentifier>{b00722eb-4d06-4491-ac17-a7331075322d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\samples\test_listener">
+      <UniqueIdentifier>{2b7147f7-da55-44bc-8924-c85a7ee8327a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\samples\test_qos">
+      <UniqueIdentifier>{5649eb32-ec6d-4366-aee7-b6b87750e641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\samples\test_performance">
+      <UniqueIdentifier>{669b6689-afef-49a7-9509-7713587f63d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\utils">
+      <UniqueIdentifier>{ab43f19b-cc9a-41f3-bd21-31b11452499d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\utils\common_utils">
+      <UniqueIdentifier>{31b3d21d-24ce-471d-8f52-1b124f04b49b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\utils\expression_grammar">
+      <UniqueIdentifier>{cf853bee-91bf-4e09-85d1-02d82cd36909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\utils\net_sock">
+      <UniqueIdentifier>{9588c5b3-a106-44a6-8b03-4e7418ea69c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\core\dcps\condition.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\contentfilteredtopic.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\datareader.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\datawriter.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\dcpsinstance.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\domainparticipant.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\domainparticipantfactory.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\entity.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\multitopic.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\publisher.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\querycondition.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\readcondition.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\status.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\statuscondition.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\subscriber.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\topic.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\topicdescription.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\waitset.c">
+      <Filter>소스 파일\core\dcps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\interface\engine_datawriter.c">
+      <Filter>소스 파일\core\dcps\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\dcps\interface\message.c">
+      <Filter>소스 파일\core\dcps\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\foo\foo.c">
+      <Filter>소스 파일\core\foo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\object\module.c">
+      <Filter>소스 파일\core\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\discovery\discovery.c">
+      <Filter>소스 파일\modules\discovery</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\discovery\rtps_discovery.c">
+      <Filter>소스 파일\modules\discovery</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\discovery\rtps\rtps_period.c">
+      <Filter>소스 파일\modules\discovery\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\management\management.c">
+      <Filter>소스 파일\modules\management</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\management\simple_management_for_message.c">
+      <Filter>소스 파일\modules\management</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\monitoring\monitoring.c">
+      <Filter>소스 파일\modules\monitoring</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\monitoring\monitoring_application.c">
+      <Filter>소스 파일\modules\monitoring</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\monitoring\monitoring_for_cps.c">
+      <Filter>소스 파일\modules\monitoring</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\monitoring\monitoring_module.c">
+      <Filter>소스 파일\modules\monitoring</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\network\access.c">
+      <Filter>소스 파일\modules\network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\network\access_config.c">
+      <Filter>소스 파일\modules\network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\network\access_udp.c">
+      <Filter>소스 파일\modules\network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\network\access_udp_out.c">
+      <Filter>소스 파일\modules\network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\network\ipv4.c">
+      <Filter>소스 파일\modules\network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_deadline.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_destination_order.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_durability_service.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_entity_factory.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_find_entity_qos.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_group_data.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_history_and_reliability.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_lifespan.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_liveliness.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_ownership.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_partition.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_policy.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_presentation.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_reader_data_lifecycle.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_resource_limits.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_set_qos.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_time_based_filter.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_topic_data.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_user_data.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\qos_writer_data_lifecycle.c">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\qos\sqlite\sqlite3.c">
+      <Filter>소스 파일\modules\qos\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\print_whs_rhs.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_cachechange.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_data.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_endpoint.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_entity.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_historycache.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_messge_parser.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_participant.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_reader.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_readerlocator.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_readerproxy.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_receive_procedure.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_sendto.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_serialized.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_statefulreader.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_statefulwriter.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_statelessreader.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_statelesswriter.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_topic.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_util.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_writer.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\rtps_writerproxy.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\rtps\service.c">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\trace\simpletrace.cpp">
+      <Filter>소스 파일\modules\trace</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\trace\trace.c">
+      <Filter>소스 파일\modules\trace</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\typesupport\simpletypesupport.c">
+      <Filter>소스 파일\modules\typesupport</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules\typesupport\typesupport.c">
+      <Filter>소스 파일\modules\typesupport</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_builtin_entity.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case1_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case20_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case21_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case22_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case2_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case3_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case4_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case5_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case7_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_case9_R.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_domainID.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_kjh.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_read_take_instances.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_read_take_next_instance.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_read_take_next_sample.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_read_take_samples.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_read_take_samples_state.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_shapedemo.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_shapedemo_listener.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_shapedemo_waitset.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_strict_reliability.c">
+      <Filter>소스 파일\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_datareader_get_liveliness_changed_status.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_datareader_get_sample_rejected_status.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_datawriter_assert_liveliness.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_datawriter_get_liveliness_lost_status.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_domainparticipant_assert_liveliness.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_get_discovered.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_ignore_participant.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_ignore_publication.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_ignore_subscription.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_ignore_topic.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_dcps_api\test_timestamp.c">
+      <Filter>소스 파일\samples\test_dcps_api</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_datareader_listener.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_datareaderlistener_on_data_available.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_datareaderlistener_on_liveliness_changed.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_datareaderlistener_on_sample_lost.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_datareaderlistener_on_sample_rejected.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_datawriterlistener_on_liveliness_lost.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_domainparticipantlistener_on_data_available.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_domainparticipantlistener_on_liveliness_changed.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_domainparticipantlistener_on_liveliness_lost.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_domainparticipantlistener_on_sample_rejected.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_listener.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_publisherlistener_on_liveliness_lost.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_subscriberlistener_on_data_available.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_subscriberlistener_on_liveliness_changed.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_listener\test_subscriberlistener_on_sample_rejected.c">
+      <Filter>소스 파일\samples\test_listener</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_content_based_filter.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_deadline.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_frame.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_lifespan.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_ownership.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_partition.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_presentation.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_rxo.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_time_based_filter.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_topic_data.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_qos\test_qos_user_data.c">
+      <Filter>소스 파일\samples\test_qos</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_performance\DDSImpl.cxx">
+      <Filter>소스 파일\samples\test_performance</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_performance\perftest.cpp">
+      <Filter>소스 파일\samples\test_performance</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samples\test_performance\Property.cxx">
+      <Filter>소스 파일\samples\test_performance</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common_utils\configuration.c">
+      <Filter>소스 파일\utils\common_utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common_utils\data_gueue.c">
+      <Filter>소스 파일\utils\common_utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common_utils\file.c">
+      <Filter>소스 파일\utils\common_utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common_utils\md5.c">
+      <Filter>소스 파일\utils\common_utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common_utils\string.c">
+      <Filter>소스 파일\utils\common_utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common_utils\thread.c">
+      <Filter>소스 파일\utils\common_utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common_utils\time.c">
+      <Filter>소스 파일\utils\common_utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\common_utils\tracemalloc.c">
+      <Filter>소스 파일\utils\common_utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\expression_grammar\expression.tab.cpp">
+      <Filter>소스 파일\utils\expression_grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\expression_grammar\expression_parser.c">
+      <Filter>소스 파일\utils\expression_grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\expression_grammar\lex.yy.c">
+      <Filter>소스 파일\utils\expression_grammar</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\net_sock\network_common.c">
+      <Filter>소스 파일\utils\net_sock</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\net_sock\tcp.c">
+      <Filter>소스 파일\utils\net_sock</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\net_sock\udp.c">
+      <Filter>소스 파일\utils\net_sock</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\includes\access.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\configuration.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\core.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\cpsdcps.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\data.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\dcps_func.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\discovery.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\expression.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\foo.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\management.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\message.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\module_common.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\module_config.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\monitoring.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\network.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\qos_policy.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\service.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\thread.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\trace.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\typesupport.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\util.h">
+      <Filter>소스 파일\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\discovery\rtps_discovery.h">
+      <Filter>소스 파일\modules\discovery</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\monitoring\monitoring_application.h">
+      <Filter>소스 파일\modules\monitoring</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\monitoring\monitoring_module.h">
+      <Filter>소스 파일\modules\monitoring</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\qos\qos.h">
+      <Filter>소스 파일\modules\qos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\qos\sqlite\sqlite3.h">
+      <Filter>소스 파일\modules\qos\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\qos\sqlite\sqlite3ext.h">
+      <Filter>소스 파일\modules\qos\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\rtps\print_whs_rhs.h">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\rtps\rtps.h">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClInclude>
+    <ClInclude Include="src\modules\rtps\rtps_message.h">
+      <Filter>소스 파일\modules\rtps</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\samples\test_performance\DDSImpl.h">
+      <Filter>소스 파일\samples\test_performance</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\samples\test_performance\MessagingIF.h">
+      <Filter>소스 파일\samples\test_performance</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\samples\test_performance\perftest.h">
+      <Filter>소스 파일\samples\test_performance</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\samples\test_performance\Property.h">
+      <Filter>소스 파일\samples\test_performance</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\samples\test_performance\test.h">
+      <Filter>소스 파일\samples\test_performance</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

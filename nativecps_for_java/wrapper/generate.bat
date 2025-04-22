@@ -1,0 +1,1 @@
+swig -c++ -I../../cps2010/include  -I../../cps2010/modules/monitoring -I../../cps2010/modules/service/rtps -o cps_wrapper.cpp -package com.zento.cps.jni -java cps.i

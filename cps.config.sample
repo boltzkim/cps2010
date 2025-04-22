@@ -1,0 +1,14 @@
+test=1
+ipv4=1
+ipv6=1
+
+interface-addr=10.0.2.15
+#simple trace 관련 변수
+simple-trace-enable=1
+simple-trace-debug=1
+simple-trace-warm=1
+simple-trace-error=1
+simple-trace-normal=1
+simple-trace-trace=1
+simple-trace-trace2=1
+simple-trace-trace3=1
